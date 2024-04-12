@@ -1,0 +1,5 @@
+package com.rtbs.apigateway.configurations;
+
+public class CorsConfig {
+
+}

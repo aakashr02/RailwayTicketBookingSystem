@@ -1,0 +1,72 @@
+package com.rtbs.bookingservice.services;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.rtbs.bookingservice.dtos.BookingRequest;
+import com.rtbs.bookingservice.dtos.BookingResponse;
+import com.rtbs.bookingservice.models.Passenger;
+import com.rtbs.bookingservice.repositories.BookingRepository;
+import com.rtbs.bookingservice.repositories.PassengerRepository;
+import com.rtbs.bookingservice.dtos.PassengerDTO;
+import com.rtbs.bookingservice.dtos.PassengerTicket;
+import com.rtbs.bookingservice.models.Booking;
+
+import jakarta.transaction.Transactional;
+import jakarta.websocket.server.ServerEndpoint;
+
+@Service
+public class BookingService {
+
+	@Autowired BookingRepository bookingRepo;
+	@Autowired PassengerRepository passengerRepo;
+	
+	@Transactional
+	public BookingResponse bookTicket(BookingRequest bookingRequest)
+	{
+		Booking booking  = new Booking();
+		booking.setBoardingStationId(bookingRequest.getBoardingStationId());
+		booking.setDestinationStationId(bookingRequest.getDestinationStationId());
+		booking.setBookingClass(bookingRequest.getBookingClass());
+		booking.setNumberOfPassengers(bookingRequest.getNumberOfPassengers());
+		booking.setPricePerTicket(bookingRequest.getPricePerTicket());
+		booking.setTrainId(bookingRequest.getTrainId());
+		booking.setUserId(bookingRequest.getUserId());
+		booking.setDepartureDate(bookingRequest.getDepartureDate());
+		
+		booking = bookingRepo.save(booking);
+		
+		int seatAvailability = 1; //Get Seat Availability
+		List<PassengerDTO> passengers = bookingRequest.getPassengers();
+		
+		List<PassengerTicket> passengerDetails = new ArrayList<PassengerTicket>();
+		
+		for(PassengerDTO p : passengers)
+		{
+			Passenger ps= new Passenger(p.getName(), p.getGender(), p.getCateringOption(), p.getAge(), booking.getBookingId(), (seatAvailability-- > 0)?"CONFIRMED":"WAITINGLIST" );
+			ps = passengerRepo.save(ps);
+			System.out.println("Passenger : "+ps);
+			PassengerTicket pT= new PassengerTicket(ps.getPassengerId(), ps.getName(), ps.getGender(), ps.getCateringOption(), ps.getAge(), ps.getBookingId(), ps.getStatus(), ps.getSeatNo());
+			passengerDetails.add( pT);
+			System.out.println(pT);
+		}
+		      
+	    
+		BookingResponse bookingResponse = new BookingResponse(booking.getBookingId(), booking.getBoardingStationId() , booking.getDestinationStationId(), booking.getBookingClass(), booking.getTrainId(), booking.getUserId(), booking.getPricePerTicket(), booking.getNumberOfPassengers(), passengerDetails, booking.getDepartureDate(), new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
+		
+		System.out.println(bookingResponse);
+		System.out.println("PASSANGERS : "+passengerDetails);
+		
+//		return "HELLO! from BookingService";
+		return bookingResponse;
+	}
+}

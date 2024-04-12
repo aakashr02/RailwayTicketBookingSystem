@@ -1,0 +1,15 @@
+spring.application.name=api-gateway
+
+server.port = 8765
+
+#spring.cloud.gateway.discovery.locator.enabled = true;
+#spring.cloud.gateway.discovery.locator.lowercase-service-id : true;
+
+spring.cloud.gateway.discovery.locator.enabled= true
+spring.cloud.gateway.discovery.locator.lower-case-service-id=true
+
+#spring.cloud.gateway.globalcors.cors-configurations.[/**].allowed-origins= http://localhost:3000
+#spring.cloud.gateway.globalcors.cors-configurations.[/**].allowed-methods= POST
+
+#spring.cloud.gateway.globalcors.cors-configurations.[/**].allowed-headers= *
+#spring.cloud.gateway.globalcors.cors-configurations.[/**].allowed-origins= *

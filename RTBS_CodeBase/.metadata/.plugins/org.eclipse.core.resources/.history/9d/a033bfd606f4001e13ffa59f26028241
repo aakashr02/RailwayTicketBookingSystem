@@ -1,0 +1,94 @@
+package com.rtbs.userservice.dto;
+
+import java.util.List;
+
+import com.rtbs.userservice.dto.Passenger;
+
+
+public class BookingRequest {
+	
+	private int userId;
+	private String boardingStationId, destinationStationId, bookingClass;
+	private int trainId, pricePerTicket, numberOfPassengers;
+	private List<Passenger> passengers;
+	
+	public BookingRequest(String boardingStationId, String destinationStationId, int trainId,
+			int pricePerTicket, int numberOfPassengers, List<Passenger> passengers, String bookingClass) {
+		super();
+		this.userId = userId;
+		
+		this.boardingStationId = boardingStationId;
+		this.destinationStationId = destinationStationId;
+		this.trainId = trainId;
+		this.pricePerTicket = pricePerTicket;
+		this.numberOfPassengers = numberOfPassengers;
+		this.passengers = passengers;
+		this.bookingClass = bookingClass;
+	}
+	public BookingRequest() {
+		super();
+	}
+	
+	public int getuserId() {
+		return userId;
+	}
+	public void setuserId(int userId) {
+		this.userId = userId;
+	}
+	
+	
+	
+	public String getBoardingStationId() {
+		return boardingStationId;
+	}
+	public void setBoardingStationId(String boardingStationId) {
+		this.boardingStationId = boardingStationId;
+	}
+	public String getDestinationStationId() {
+		return destinationStationId;
+	}
+	public void setDestinationStationId(String destinationStationId) {
+		this.destinationStationId = destinationStationId;
+	}
+	public int getTrainId() {
+		return trainId;
+	}
+	public void setTrainId(int trainId) {
+		this.trainId = trainId;
+	}
+	public int getPricePerTicket() {
+		return pricePerTicket;
+	}
+	public void setPricePerTicket(int pricePerTicket) {
+		this.pricePerTicket = pricePerTicket;
+	}
+	public int getNumberOfPassengers() {
+		return numberOfPassengers;
+	}
+	public void setNumberOfPassengers(int numberOfPassengers) {
+		this.numberOfPassengers = numberOfPassengers;
+	}
+	public List<Passenger> getPassengers() {
+		return passengers;
+	}
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public String getBookingClass() {
+		return bookingClass;
+	}
+	public void setBookingClass(String bookingClass) {
+		this.bookingClass = bookingClass;
+	}
+	
+	
+	
+	
+
+}

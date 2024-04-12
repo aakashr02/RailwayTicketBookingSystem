@@ -1,0 +1,19 @@
+package com.rtbs.bookingservice.models;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+public class Passenger {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int passengerId;
+	
+	private String name, gender, cateringOption, status;
+	private int age;
+	
+	private int seatNo;
+	
+	
+}

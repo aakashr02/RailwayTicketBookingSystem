@@ -1,0 +1,5 @@
+package com.rtbs.bookingservice.controllers;
+
+public class BookingController {
+
+}

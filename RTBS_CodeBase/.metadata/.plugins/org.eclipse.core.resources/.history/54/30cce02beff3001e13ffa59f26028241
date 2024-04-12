@@ -1,0 +1,73 @@
+package com.rtbs.bookingservice.dtos;
+
+import java.util.List;
+
+import com.rtbs.bookingservice.dto.Passenger;
+
+public class BookingRequest {
+
+	
+	private int pnr;
+	private String boardingStationId, destinationStationId;
+	private int trainId, pricePerTicket, numberOfPassengers;
+	private List<Passenger> passengers;
+	public BookingRequest(int pnr, String boardingStationId, String destinationStationId, int trainId,
+			int pricePerTicket, int numberOfPassengers, List<Passenger> passengers) {
+		super();
+		this.pnr = pnr;
+		this.boardingStationId = boardingStationId;
+		this.destinationStationId = destinationStationId;
+		this.trainId = trainId;
+		this.pricePerTicket = pricePerTicket;
+		this.numberOfPassengers = numberOfPassengers;
+		this.passengers = passengers;
+	}
+	public BookingRequest() {
+		super();
+	}
+	public int getPnr() {
+		return pnr;
+	}
+	public void setPnr(int pnr) {
+		this.pnr = pnr;
+	}
+	public String getBoardingStationId() {
+		return boardingStationId;
+	}
+	public void setBoardingStationId(String boardingStationId) {
+		this.boardingStationId = boardingStationId;
+	}
+	public String getDestinationStationId() {
+		return destinationStationId;
+	}
+	public void setDestinationStationId(String destinationStationId) {
+		this.destinationStationId = destinationStationId;
+	}
+	public int getTrainId() {
+		return trainId;
+	}
+	public void setTrainId(int trainId) {
+		this.trainId = trainId;
+	}
+	public int getPricePerTicket() {
+		return pricePerTicket;
+	}
+	public void setPricePerTicket(int pricePerTicket) {
+		this.pricePerTicket = pricePerTicket;
+	}
+	public int getNumberOfPassengers() {
+		return numberOfPassengers;
+	}
+	public void setNumberOfPassengers(int numberOfPassengers) {
+		this.numberOfPassengers = numberOfPassengers;
+	}
+	public List<Passenger> getPassengers() {
+		return passengers;
+	}
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
+	}
+	
+
+	
+}

@@ -1,0 +1,38 @@
+package com.rtbs.apigateway.configurations;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+@Configuration
+public class CorsConfig {
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        List<String> allowedMethods = new ArrayList<String>();
+        allowedMethods.add("POST");
+        allowedMethods.add("GET");
+        configuration.addAllowedOrigin("http://localhost:3000");
+//        configuration.setAllowedOrigins("*"); // Replace with your allowed origins
+        configuration.setAllowedMethods(allowedMethods); // Allow all HTTP methods
+        configuration.setAllowedHeaders("*"); // Allow all headers
+        configuration.setAllowCredentials(true); // Allow credentials (e.g., cookies)
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        return new CorsFilter(corsConfigurationSource());
+    }
+}

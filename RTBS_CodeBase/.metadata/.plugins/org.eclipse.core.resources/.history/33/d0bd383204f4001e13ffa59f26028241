@@ -1,0 +1,9 @@
+package com.rtbs.bookingservice.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.rtbs.bookingservice.dtos.Passenger;
+
+public interface BookingRepository extends JpaRepository<Passenger, Integer> {
+
+}

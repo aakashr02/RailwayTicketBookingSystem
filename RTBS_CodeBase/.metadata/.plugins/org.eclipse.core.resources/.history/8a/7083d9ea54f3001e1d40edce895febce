@@ -1,0 +1,5 @@
+package com.rtbs.userservice.models;
+
+public class CustomSuccessHandler {
+
+}

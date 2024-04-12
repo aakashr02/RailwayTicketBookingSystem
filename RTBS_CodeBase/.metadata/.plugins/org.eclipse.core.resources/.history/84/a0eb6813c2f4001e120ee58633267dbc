@@ -1,0 +1,20 @@
+package com.rtbs.userservice.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.rtbs.userservice.dto.BookingRequest;
+import com.rtbs.userservice.dto.BookingResponse;
+
+
+@FeignClient("BOOKING-SERVICE")
+public interface BookingFeign {
+	
+	@PostMapping(value="/bookingRequest", produces = "application/json")
+	public BookingResponse bookTicket(@RequestBody BookingRequest bookingRequest);
+	
+	@PostMapping("/cancelTicket")
+	public String cancelTicket(@RequestParam int pnr);
+}

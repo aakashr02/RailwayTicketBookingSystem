@@ -1,0 +1,141 @@
+package com.rtbs.bookingservice.services;
+
+import java.time.LocalDateTime;
+
+import java.util.ArrayList;
+import java.sql.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.rtbs.bookingservice.dtos.BookingRequest;
+import com.rtbs.bookingservice.dtos.BookingResponse;
+import com.rtbs.bookingservice.dtos.CancellationRequest;
+import com.rtbs.bookingservice.models.Passenger;
+import com.rtbs.bookingservice.repositories.BookingRepository;
+import com.rtbs.bookingservice.repositories.PassengerRepository;
+import com.rtbs.bookingservice.dtos.PassengerDTO;
+import com.rtbs.bookingservice.dtos.PassengerTicket;
+import com.rtbs.bookingservice.feign.SeatFeign;
+import com.rtbs.bookingservice.models.Booking;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class BookingService {
+
+	@Autowired BookingRepository bookingRepo;
+	@Autowired PassengerRepository passengerRepo;
+	@Autowired SeatFeign seatFeign;
+	
+	@Transactional
+	public BookingResponse bookTicket(BookingRequest bookingRequest)
+	{
+		Booking booking  = new Booking();
+		booking.setBoardingStationId(bookingRequest.getBoardingStationId());
+		booking.setDestinationStationId(bookingRequest.getDestinationStationId());
+		booking.setBookingClass(bookingRequest.getBookingClass());
+		booking.setNumberOfPassengers(bookingRequest.getNumberOfPassengers());
+		booking.setPricePerTicket(bookingRequest.getPricePerTicket());
+		booking.setTrainId(bookingRequest.getTrainId());
+		booking.setUserId(bookingRequest.getUserId());
+		booking.setDepartureDate(bookingRequest.getDepartureDate());
+		booking.setBookingDateTime(LocalDateTime.now());
+		
+		booking = bookingRepo.save(booking);
+		
+		
+		Date date = Date.valueOf(bookingRequest.getDepartureDate());
+		
+		List<Integer> confirmationStatus = seatFeign.bookSeats(bookingRequest.getBookingClass(), date, bookingRequest.getTrainId(), bookingRequest.getBoardingStationId(), bookingRequest.getDestinationStationId(), bookingRequest.getNumberOfPassengers());
+		
+		int seatAvailability = 0+confirmationStatus.get(0); //Get Seat Availability
+		List<PassengerDTO> passengers = bookingRequest.getPassengers();
+		
+		List<PassengerTicket> passengerDetails = new ArrayList<PassengerTicket>();
+		
+		for(PassengerDTO p : passengers)
+		{
+			Passenger ps= new Passenger(p.getName(), p.getGender(), p.getCateringOption(), p.getAge(), booking.getBookingId(), (seatAvailability-- > 0)?"CONFIRMED":"WAITINGLIST" );
+			ps = passengerRepo.save(ps);
+			System.out.println("Passenger : "+ps);
+			PassengerTicket pT= new PassengerTicket(ps.getPassengerId(), ps.getName(), ps.getGender(), ps.getCateringOption(), ps.getAge(), ps.getBookingId(), ps.getStatus(), ps.getSeatNo());
+			passengerDetails.add( pT);
+			System.out.println(pT);
+		}
+		      
+	    
+		BookingResponse bookingResponse = new BookingResponse(booking.getBookingId(), booking.getBoardingStationId() , booking.getDestinationStationId(), booking.getBookingClass(), booking.getTrainId(), booking.getUserId(), booking.getPricePerTicket(), booking.getNumberOfPassengers(), passengerDetails, booking.getDepartureDate(), booking.getBookingDateTime());
+		
+		System.out.println(bookingResponse);
+		System.out.println("PASSANGERS : "+passengerDetails);
+		
+//		return "HELLO! from BookingService";
+		return bookingResponse;
+	}
+	
+	public String cancelTicket(CancellationRequest cancelRequest)
+	{
+		
+		
+		String coach_type, fstation, tstation; 
+		Date date; 
+		int train_id , seats;
+		
+		
+		for(int pnr: cancelRequest.getPnr())
+		{
+			Passenger p = passengerRepo.findById(pnr).get();
+			int bookingId = p.getBookingId();
+			
+			Booking b = bookingRepo.findById(bookingId).get();
+			coach_type = b.getBookingClass();
+			fstation = b.getBoardingStationId();
+			tstation = b.getDestinationStationId();
+			date = Date.valueOf(b.getDepartureDate());
+			train_id = b.getTrainId();
+			seats =  b.getNumberOfPassengers();
+			
+			if(cancelRequest.getUserId() != b.getUserId())
+			{
+				System.out.println("Cancel Request UID : "+cancelRequest.getUserId());
+				System.out.println("Database UID : "+b.getUserId());
+				return "Cancellation Failed";
+			}
+			
+			p.setStatus("CANCELLED");
+			p.setSeatNo(0);
+			passengerRepo.save(p);
+			b.setNumberOfPassengers(b.getNumberOfPassengers()-1);
+			bookingRepo.save(b);
+		}
+		
+		return "Cancellation Successful";
+		
+		
+	}
+	
+	public List<BookingResponse> getBookingHistory(int userId)
+	{
+		List<Booking> bookings = bookingRepo.findByUserIdOrderByBookingDateTimeDesc(userId);
+		List<BookingResponse> bookingHistory = new ArrayList<BookingResponse>();
+		
+		for (Booking booking : bookings) {
+			
+			List<Passenger> pass = passengerRepo.findByBookingId(booking.getBookingId());
+			List<PassengerTicket> passTickets = new ArrayList<PassengerTicket>();
+			for (Passenger p : pass) {
+				passTickets.add(new PassengerTicket(p.getPassengerId(), p.getName(), p.getGender(), p.getCateringOption(), p.getAge(), p.getBookingId(), p.getStatus(), p.getSeatNo()));
+			}
+			
+			
+			bookingHistory.add(new BookingResponse(booking.getBookingId(), booking.getBoardingStationId() , booking.getDestinationStationId(), booking.getBookingClass(), booking.getTrainId(), booking.getUserId(), booking.getPricePerTicket(), booking.getNumberOfPassengers(), passTickets, booking.getDepartureDate(), booking.getBookingDateTime()));
+			
+		}
+		
+		return bookingHistory;
+	}
+	
+}

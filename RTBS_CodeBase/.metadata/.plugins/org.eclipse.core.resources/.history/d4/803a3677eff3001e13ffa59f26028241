@@ -1,0 +1,7 @@
+package com.rtbs.userservice.dto;
+
+public class Passenger {
+
+	private String name, gender, cateringOption;
+	private int age;
+}

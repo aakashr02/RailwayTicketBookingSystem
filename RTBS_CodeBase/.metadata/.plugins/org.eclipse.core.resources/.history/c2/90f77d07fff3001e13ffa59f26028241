@@ -1,0 +1,92 @@
+package com.rtbs.bookingservice.models;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+public class Booking {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int pnr;
+	
+	private String boardingStationId, destinationStationId;
+	private int userId, trainId, pricePerTicket, numberOfPassengers;
+	
+	public Booking(int pnr, String boardingStationId, String destinationStationId, int userId, int trainId,
+			int pricePerTicket, int numberOfPassengers) {
+		super();
+		this.pnr = pnr;
+		this.boardingStationId = boardingStationId;
+		this.destinationStationId = destinationStationId;
+		this.userId = userId;
+		this.trainId = trainId;
+		this.pricePerTicket = pricePerTicket;
+		this.numberOfPassengers = numberOfPassengers;
+	}
+	
+	public Booking() {
+		super();
+	}
+
+	public int getPnr() {
+		return pnr;
+	}
+
+	public void setPnr(int pnr) {
+		this.pnr = pnr;
+	}
+
+	public String getBoardingStationId() {
+		return boardingStationId;
+	}
+
+	public void setBoardingStationId(String boardingStationId) {
+		this.boardingStationId = boardingStationId;
+	}
+
+	public String getDestinationStationId() {
+		return destinationStationId;
+	}
+
+	public void setDestinationStationId(String destinationStationId) {
+		this.destinationStationId = destinationStationId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getTrainId() {
+		return trainId;
+	}
+
+	public void setTrainId(int trainId) {
+		this.trainId = trainId;
+	}
+
+	public int getPricePerTicket() {
+		return pricePerTicket;
+	}
+
+	public void setPricePerTicket(int pricePerTicket) {
+		this.pricePerTicket = pricePerTicket;
+	}
+
+	public int getNumberOfPassengers() {
+		return numberOfPassengers;
+	}
+
+	public void setNumberOfPassengers(int numberOfPassengers) {
+		this.numberOfPassengers = numberOfPassengers;
+	}
+	
+	
+	
+	
+	
+}
