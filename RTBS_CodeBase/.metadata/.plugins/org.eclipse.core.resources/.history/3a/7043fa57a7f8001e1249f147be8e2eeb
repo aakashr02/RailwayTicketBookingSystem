@@ -1,0 +1,5 @@
+package com.irtbs.dto;
+
+public interface SeatAvailabilityAndPrice {
+
+}

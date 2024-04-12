@@ -1,0 +1,15 @@
+package com.rtbs.bookingservice.dtos;
+
+public class BookingResponse {
+
+	private int bookingId;
+	private String from, to;
+	private int trainNo;
+	private List<Passenger> 
+	
+	passenger{
+		
+		pnr, age, seatNo;
+		name, gender, catering,  status;
+	}
+}

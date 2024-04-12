@@ -1,0 +1,74 @@
+package com.rtbs.userservice.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.rtbs.userservice.dto.BookingRequest;
+import com.rtbs.userservice.dto.Login;
+import com.rtbs.userservice.feign.BookingFeign;
+import com.rtbs.userservice.models.MyUser;
+import com.rtbs.userservice.repositories.UserRepository;
+
+@Service
+public class UserService {
+
+	@Autowired
+	private UserRepository userRepo;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
+	@Autowired
+	BookingFeign bookingFeign;
+	
+	
+	
+	public String register(MyUser user)    
+	{
+//		if(userRepo.findByEmail(user.getEmail()).size()==0)
+//		{
+			user.setPassword(passwordEncoder.encode( user.getPassword() ));
+			userRepo.save(user);
+			return "Registration Successful";
+//		}
+//		return "This Mail ID is Already Registered";
+	}
+	
+	
+	public String login(Login login) throws AuthenticationException
+	{
+		Optional<MyUser> users = userRepo.findByEmail(login.getEmail()); 
+//		if(users.size()==0)
+//			return "User with Mail ID does not Exist";
+//		
+//		if(users.get(0).getPassword() .equals( login.getPassword()) )
+			return "Login Successful";
+		
+//		return "Incorrect Password";
+			
+		
+		
+	}
+	
+	public String bookTicket(BookingRequest bookingRequest)
+	{
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	String currentPrincipalName = authentication.getPrincipal().toString();
+//    	System.out.println(currentPrincipalName+"\t"+userRepo.findByEmail(currentPrincipalName).get().getUserId());
+//		bookingRequest.setUserId(userRepo.findByEmail(currentPrincipalName).orElse(null).getUserId());
+//		return bookingFeign.bookTicket(bookingRequest);
+//    	return ""+userRepo.findByEmail(currentPrincipalName).get().getUserId();
+		return userRepo.findByEmail("daniel@gmail.com").get().toString(); 
+	}
+}

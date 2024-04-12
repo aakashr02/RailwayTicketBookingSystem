@@ -1,0 +1,5 @@
+package com.rtbs.userservice.feign;
+
+public interface BookingFeign {
+
+}

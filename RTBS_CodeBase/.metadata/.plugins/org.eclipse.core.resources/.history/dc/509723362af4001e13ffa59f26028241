@@ -1,0 +1,23 @@
+package com.rtbs.userservice.dto;
+
+import java.util.List;
+
+import com.rtbs.bookingservice.models.Booking;
+import com.rtbs.bookingservice.models.Passenger;
+
+public class BookingResponse {
+
+	private int bookingId;
+	private String boardingStationId, destinationStationId,  bookingClass;
+	private int trainId, userId, pricePerTicket, numberOfPassengers;
+	private List<Passenger> passengers;  
+	
+	public BookingResponse()
+	{
+		
+	}
+	
+	
+
+	
+}
