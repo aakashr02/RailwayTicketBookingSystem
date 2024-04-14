@@ -1,0 +1,9 @@
+.station-mgmt{
+    min-height: 84vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.station-div{
+}

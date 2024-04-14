@@ -1,0 +1,56 @@
+  
+  .admin-login{
+    min-height: 84vh;
+  }
+  
+  /* This styles the overall container */
+  .login-container {
+    /* max-width: 270px; */
+    width: 30%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin-top: 50px; /* Adjust as needed */
+  }
+  
+  /* Styles for the form itself */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form fields */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Style for the login button */
+  .login-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: #0056b3;
+  }
+  
+    

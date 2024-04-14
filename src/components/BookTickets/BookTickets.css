@@ -1,0 +1,6 @@
+.book-tickets{
+    min-height: 84vh;
+    background-color: #F4DFC8;
+    width: 100%;
+    display: flex;
+}

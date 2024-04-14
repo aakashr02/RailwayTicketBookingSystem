@@ -1,0 +1,14 @@
+.login{
+    min-height: 84vh;
+    background-color: #F4DFC8;
+    width: 100%;
+    text-align: center;
+}
+
+.login-div{
+    padding: 100px;
+    height: 80vh;
+    background-color: #77B0AA;
+    width: 50%;
+    margin: auto;
+}

@@ -1,0 +1,82 @@
+
+table{
+    text-align: center;
+    border-spacing: 40px;
+}
+
+.train-search{
+    min-height: 84vh;
+}
+
+.train-info{
+    width: 60%;
+    margin: auto;
+}
+
+.heading{
+    display: flex;
+    justify-content: space-between;
+    background-color: lightgray;
+    padding: 1rem;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 1rem;
+    background-color: white;
+}
+.source-info{
+    display: flex;
+}
+
+.dstn-info{
+    display: flex;
+}
+
+.classes{
+    display: flex;
+    justify-content: flex-start;
+    background-color: lightgray;
+    gap: 10px;
+    padding: 1rem;
+}
+
+.diff-classes{
+    width: 15%;
+    padding: 1rem;
+    background-color: darkgray;
+    border-radius: 9px;
+}
+.selected{
+    border: 2px solid blue;
+}
+.book-button-div{
+    display: flex;
+    padding: 1rem;
+    background-color: white;
+    justify-content: flex-start;
+}
+
+.book-button{
+    padding: 0.6rem;
+    border-radius: 3px;
+    background-color: orange;
+    cursor: pointer;
+}
+.book-button:hover{
+    background-color: lightsalmon;
+    transition: .3s;
+}
+.refresh-icon{
+    cursor: pointer;
+}
+
+.seats{
+}
+
+.seat-info{
+    width: 20%;
+    padding: 1rem;
+}

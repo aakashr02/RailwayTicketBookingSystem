@@ -1,0 +1,28 @@
+.book-ticket{
+    min-height: 84vh;
+    background-color: #BB8493;
+    padding: 60px;
+}
+
+.book-div{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    padding: 80px;
+    border-radius: 20px;
+    background-color: #DBAFA0;
+}
+
+.book-btn{
+    padding: 0.4rem 0.7rem;
+    border-radius: 0.4rem;
+    border: none;
+    cursor: pointer;
+}
+.add{
+    background-color: teal;
+}
+
+.book{
+    background-color: #008CBA;
+}

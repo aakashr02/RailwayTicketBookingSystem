@@ -1,0 +1,130 @@
+
+nav{
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    padding: 36px 80px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+nav, .btn{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: extra-light 200;
+}
+
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    color: #edf0f1;
+    text-decoration: none;
+    padding: 9px 25px;
+    background-color: rgba(0,136,169,1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.btn:hover {
+    background-color: rgba(0,136,169,0.8);
+    
+}
+.btn-reg{
+    background-color: #007F73;
+}
+.btn-reg:hover{
+    background-color: #00665c;
+}
+
+#navbar li{
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li .nav-link{
+    text-decoration: none;
+    font-size: 600;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+#navbar li .nav-link:hover, #navbar li a.active{
+    text-decoration: none;
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: #000;
+}
+
+
+#mobile {
+    display: none;
+}
+
+#mobile i{
+    color: #fff;
+}
+.head{
+    display: none;
+}
+
+@media screen and (max-width: 769px){
+    #navbar{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 7.1rem;
+        left: -300px;
+        width: 300px;
+        height: 100vh;
+        background-color: #2a3239;
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+        padding: 40px 0 0 10px;
+        transition: 0.3s ease-in-out;
+        z-index: 1;
+    }
+    #navbar.active{
+        left: 0;
+    }
+    #navbar li{
+        margin-bottom: 25px;
+    }
+    nav{
+        padding: 42px 323px;
+    }
+    .head{
+        display: block;
+        color: #fff;
+        font-size: 24px;
+        
+        font-weight: regular 800;
+    }
+
+    #mobile {
+        display: block;
+    }
+    #mobile i{
+        font-size: 24px;
+        cursor: pointer;
+        position: absolute;
+        left: 2rem;
+        top: 2.5rem;
+    }
+    #navbar li{
+        list-style: none;
+        padding: 0 20px;
+        position: relative;
+    }
+    .logo{
+        position: fixed;
+        right: 2rem;
+        top: 2rem;
+    }
+}
