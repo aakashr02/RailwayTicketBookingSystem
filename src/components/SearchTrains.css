@@ -7,26 +7,19 @@
 }
 
 .search-form{
-    width: 100%;
-    height: 84vh;
+    width: 40%;
+    margin: auto;
     padding: 20px;
+    border-radius: 50px;
     background-color: #135D66;
     color: #fff;
     text-align: center;
 }
-
-.image-div{
-    width: 50%;
-    height: 80vh;
-    padding: 20px;
-    background-color: #77B0AA;
-}
-
 .dropdown{
-    /* display: flex; */
-    width: 15%;
+    display: flex;
+    width: 30%;
     margin: auto;
-    /* flex-direction: column; */
+    flex-direction: column;
     justify-content: center;
     background-color: white;
     border: 1px solid gray;
@@ -38,8 +31,8 @@
 }
 .dropdown-row{
     cursor: pointer;
-    text-align: start;
-    margin: 2px 0;
+    text-align: center;
+    padding: 2px;
 }
 .search-inner{
     display: flex;

@@ -20,7 +20,7 @@ function TrainRouteDetails() {
 
   return (
     <div className='train-route'>
-        <table>
+        <table className='content-table'>
             <thead>
                 <tr>
                     <th>Train Number</th>

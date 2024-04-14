@@ -10,7 +10,6 @@ function Login() {
 
     const [user, setUser] = useState({ email: "", password: "" })
     const [msg, setMsg] = useState("")
-    const [selectedRole, setSelectedRole] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -19,15 +18,14 @@ function Login() {
         console.log(user);
         axios.post("http://localhost:8765/user-service/login", user)
             .then((res) => {
-                if (selectedRole === 'user') {
-                    if (res.status === 200) {
-                        setMsg("DATA : " + res.data + "\nHEADER : " + res.headers);
-                        // localStorage.setItem('token', res.data.token);
-                        localStorage.setItem('isLoggedIn', true);
-                        localStorage.setItem('role', 'user');
-                        navigate('/welcome-user');
-                    }
+                if (res.status === 200) {
+                    setMsg("DATA : " + res.data + "\nHEADER : " + res.headers);
+                    // localStorage.setItem('token', res.data.token);
+                    localStorage.setItem('isLoggedIn', true);
+                    localStorage.setItem('role', 'user');
+                    navigate('/');
                 }
+
                 console.log(res.data)
                 console.log(res.headers)
                 console.log(res.status)
@@ -58,20 +56,19 @@ function Login() {
     return (
         <div className='login'>
             <div className='login-div'>
-                <h2>LOGIN</h2>
+                <h2>LOGIN</h2><br></br>
                 <h3>
                     <form>
-                        <select onChange={(e) => setSelectedRole(e.target.value)}>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                        </select> <br />
-                        Email : <input type="email" value={user.email} onChange={(evt) => setUser({ ...user, email: evt.target.value })}></input><br></br>
-                        Password : <input type="password" value={user.password} onChange={(evt) => setUser({ ...user, password: evt.target.value })}></input><br></br>
-                        <button onClick={login}>LOGIN</button>
-                        <button onClick={getLoginUser}>GET LOGGED IN USER</button>
+                        Email : <input type="email" placeholder='Email' value={user.email} onChange={(evt) => setUser({ ...user, email: evt.target.value })}></input><br></br>
+                        <br/>
+                        Password : <input type="password" placeholder='Password' value={user.password} onChange={(evt) => setUser({ ...user, password: evt.target.value })}></input><br></br>
+                        <br/>
+                        <button className='login-btn' onClick={login}>LOGIN</button>
+                        {/* <button onClick={getLoginUser}>GET LOGGED IN USER</button> */}
                         {error && <p style={{ color: 'red' }}>{error}</p>}
                     </form>
-                    <button onClick={adminLogin}>Login as Admin</button>
+                    <br/>
+                    <button className='login-admin' onClick={adminLogin}>Login as Admin</button>
                 </h3>
             </div>
 

@@ -1,7 +1,40 @@
 .train-route{
     min-height: 84vh;
+    display: flex;
+    flex-direction: column;
 }
-table{
-    text-align: center;
-    border-spacing: 40px;
+
+.content-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    margin: auto;
+    font-size: 0.9rem;
+    min-width: 480px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
+
+.content-table thead tr{
+    background-color: #009879;
+    color: #ffffff;
+    text-align-last: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td{
+    padding: 12px 15px;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid #9f9e9e;
+}
+.content-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 3px solid #009879;
+}
+

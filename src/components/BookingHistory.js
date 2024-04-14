@@ -51,19 +51,20 @@ function BookingHistory() {
 
   return (
     <div className='booking-history'>
-    <h2>BookingHistory</h2>
-    <h3>
-
-    <table>
+    <h2 style={{"textAlign":"center"}}>BookingHistory</h2>
+    <br/>
+    <table className='content-table'>
+        <thead>
         <tr>
-        <th>BOOKING ID</th>
-        <th>FROM</th>
-        <th>TO</th>
-        <th>TRAIN NUMBER</th>
-        <th>PASSENGERS</th>
+        <th>Booking ID</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Train Number</th>
+        <th>Passengers</th>
         <th></th>
         <th></th>
         </tr>
+        </thead>
         {
             hist.map((h, index)=>{
                 return(
@@ -75,13 +76,13 @@ function BookingHistory() {
                     <td>{h.trainId}</td>
                     <td>{h.numberOfPassengers}</td>
                     <td>
-                        <button>
-                        <Link style={{'textDecoration':'none'}} to="/passengerDetails" state={h.passengers}>
+                        <button className='btn'>
+                        <Link style={{'textDecoration':'none', 'color':'white'}} to="/passengerDetails" state={h.passengers}>
                             VIEW PASSENGER DETAILS
                         </Link>
                         </button>
                     </td>
-                    <td><button disabled={h.numberOfPassengers===0} onClick={(evt)=>viewTicket(evt,h)}>VIEW TICKET</button></td>
+                    <td><button className='btn' disabled={h.numberOfPassengers===0} onClick={(evt)=>viewTicket(evt,h)}>VIEW TICKET</button></td>
                 </tr>
                 
                 )
@@ -90,8 +91,6 @@ function BookingHistory() {
 
     </table>
         {/* <button onClick={getHistory}>BOOKING HISTORY</button> */}
-        
-    </h3>
     
     </div>
   )

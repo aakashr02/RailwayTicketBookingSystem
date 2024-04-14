@@ -11,6 +11,9 @@ table{
 .train-info{
     width: 60%;
     margin: auto;
+    margin-top: 20px;
+    border: 1px solid;
+    
 }
 
 .heading{

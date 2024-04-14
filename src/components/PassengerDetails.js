@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import "./PassengerStyles.css"
+
 
 function PassengerDetails() {
     
@@ -57,9 +59,11 @@ function PassengerDetails() {
     }
 
   return (
-    <div style={{"textAlign":"center"}}>
-        <h2>PassengerDetails</h2>
-        <table>
+    <div className='passenger-div' style={{"textAlign":"center"}}>
+        <h2>Passenger Details</h2>
+        <br/>
+        <table className='content-table'>
+            <thead>
             <tr>
             <th>PNR</th>
             <th>NAME</th>
@@ -70,6 +74,7 @@ function PassengerDetails() {
             <th>SEAT NUMBER</th>
             <th>CANCEL TICKET</th>
             </tr>
+            </thead>
             {
                 data.map((d, index)=>{
 
@@ -88,7 +93,8 @@ function PassengerDetails() {
                 })
             }
         </table>
-        <button disabled={l.length===0} onClick={cancelTicket}>CANCEL TICKETS</button>
+        <br/>
+        <button className='btn del' disabled={l.length===0} onClick={cancelTicket}>CANCEL TICKETS</button>
     </div>
   )
 }

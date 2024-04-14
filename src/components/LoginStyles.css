@@ -2,13 +2,47 @@
     min-height: 84vh;
     background-color: #F4DFC8;
     width: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .login-div{
-    padding: 100px;
-    height: 80vh;
-    background-color: #77B0AA;
-    width: 50%;
+    width: 20%;
     margin: auto;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #135D66;
+    width: 50%;
+    text-align: center;
+    color: white;
+}
+
+.login-btn{
+    color: #edf0f1;
+    text-decoration: none;
+    padding: 9px 25px;
+    background-color: rgb(49, 131, 49);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.login-btn:hover{
+    background-color: rgb(74, 179, 74);
+    transition: 0.3s;
+}
+
+.login-admin{
+    color: #edf0f1;
+    text-decoration: none;
+    padding: 9px 25px;
+    background-color: teal;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.login-admin:hover{
+    background-color: rgb(26, 147, 147);
+    transition: 0.3s;
 }

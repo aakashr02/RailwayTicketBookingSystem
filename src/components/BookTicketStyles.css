@@ -1,6 +1,6 @@
 .book-ticket{
     min-height: 84vh;
-    background-color: #BB8493;
+    background-color: #F4DFC8;
     padding: 60px;
 }
 
@@ -10,7 +10,7 @@
     text-align: center;
     padding: 80px;
     border-radius: 20px;
-    background-color: #DBAFA0;
+    background-color: #135D66;
 }
 
 .book-btn{
@@ -20,9 +20,37 @@
     cursor: pointer;
 }
 .add{
-    background-color: teal;
+    background-color: rgb(38, 179, 38);
+}
+.add:hover{
+    background-color: rgb(51, 208, 51);
+    transition: 0.3s;
 }
 
 .book{
-    background-color: #008CBA;
+    background-color: #4998c3;
+    padding: 10px 15px;
+    border-radius: 30px;
+}
+.book:hover{
+    background-color: #53a8d6;
+    transition: 0.3s;
+}
+
+.hist{
+    background-color: honeydew;
+    padding: 10px 15px;
+    border-radius: 30px;
+}
+.hist:hover{
+    background-color: rgb(222, 255, 222);
+    transition: 0.3s;
+}
+
+.del{
+    background-color: rgb(154, 32, 32);
+}
+.del:hover{
+    background-color: rgb(195, 44, 44);
+    transition: 0.3s;
 }

@@ -97,7 +97,7 @@ function BookTicket() {
                                     <option value="Female" >Female</option>
                                     <option value="Transgender" >Transgender</option>
                                 </select>
-
+                                <br/><br/>
                                 <select required name="cateringOption" value={val.cateringOption} onChange={(e) => handleChange(e, i)} hidden={(cateringService === "yes") ? false : true}>
                                     <option value="No Option" >No Option</option>
                                     <option value="Veg" >Veg</option>
@@ -113,7 +113,7 @@ function BookTicket() {
 
                     {/* <p>{JSON.stringify(data)}</p> */}
                     <br></br>
-                    <button className='book-btn book' type='submit'>BOOK TICKET</button>
+                    <button className='book-btn book' type='submit'>BOOK TICKET</button> <br/> <br/>
                     <button className='book-btn hist' onClick={(evt) => { evt.preventDefault(); navigate("/bookingHistory") }}>BOOKING HISTORY</button>
                     <br></br>
                     {/* {JSON.stringify(data)} */}
